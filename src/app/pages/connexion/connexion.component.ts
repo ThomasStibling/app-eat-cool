@@ -19,4 +19,16 @@ export class ConnexionComponent {
     private formBuilder: FormBuilder,
     private auth: AuthentificationService, private router: Router
   ) {}
+
+  onConnexion() {
+    if (this.formulaire.valid) {
+      this.auth.login(this.formulaire.value).subscribe(success => {
+        if(success) {
+          this.router.navigateByUrl('/accueil');
+        } else {
+          alert("Mauvais login / mot de passe")
+        }
+      }); 
+    }
+  }
 }
