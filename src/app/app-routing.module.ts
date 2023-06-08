@@ -7,7 +7,7 @@ import { EditionAlimentComponent } from './pages/edition-aliment/edition-aliment
 import { authGuard } from './services/auth.guard';
 
 const routes: Routes = [
-  { path: 'accueil', component: AlimentComponent },
+  { path: 'aliment', component: AlimentComponent },
   { path: 'connexion', component: ConnexionComponent },
   {
     path: 'ajout-aliment',
@@ -19,7 +19,7 @@ const routes: Routes = [
     component: EditionAlimentComponent,
     canActivate: [authGuard],
   },
-  { path: '', redirectTo: 'accueil', pathMatch: 'full' },
+  { path: '', redirectTo: 'aliment', pathMatch: 'full' },
   { path: '**', component: Page404Component },
 ];
 
