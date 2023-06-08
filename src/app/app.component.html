@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/accueil">Eat Cool</a>
+    <a class="navbar-brand" routerLink="/accueil">Demo Angular</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -15,29 +15,37 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" routerLink="/accueil" routerLinkActive="active">
             Accueil
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/food" routerLinkActive="active">
-            Aliments
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            Catégories
-          </a>
-        </li>
-      </ul>
-      <ul class="navbar-nav mb-2 d-flex justify-content-end">
-        <li class="nav-item justify-content-end">
+        <li *ngIf="jwt == null; else lienDeconnexion" class="nav-item">
           <a class="nav-link" routerLink="/connexion" routerLinkActive="active">
             Connexion
           </a>
         </li>
+
+        <ng-template #lienDeconnexion>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              style="cursor: pointer"
+              (click)="onDeconnexion()"
+            >
+              Déconnexion
+            </a>
+          </li>
+        </ng-template>
       </ul>
+      <form class="d-flex" role="search">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
     </div>
   </div>
 </nav>

@@ -1,0 +1,28 @@
+<form (ngSubmit)="onAjoutArticle()" [formGroup]="formulaire">
+  <mat-form-field>
+    <mat-label>Titre</mat-label>
+    <input matInput formControlName="title" />
+    <mat-error>Le titre est obligatoire</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Contenu</mat-label>
+    <textarea matInput formControlName="body"></textarea>
+    <mat-error *ngIf="formulaire.get('body')?.hasError('required')"
+      >Le contenu est obligatoire</mat-error
+    >
+    <mat-error *ngIf="formulaire.get('body')?.hasError('minlength')"
+      >Le contenu doit avoir 5 caractères au minimum</mat-error
+    >
+  </mat-form-field>
+
+  <div class="mt-5">
+    <button mat-raised-button type="submit" color="primary">
+      {{ alimentModifie ? "Modifier" : "Ajouter" }}
+    </button>
+
+    <a mat-raised-button class="ms-2" routerLink="/accueil" color="warn">
+      Annuler
+    </a>
+  </div>
+</form>

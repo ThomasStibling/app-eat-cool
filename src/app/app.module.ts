@@ -3,39 +3,44 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FoodComponent } from './pages/food/food.component';
+import { AlimentComponent } from './pages/aliment/aliment.component';
 import { ConnexionComponent } from './pages/connexion/connexion.component';
+import { Page404Component } from './pages/page404/page404.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { AddFoodComponent } from './pages/add-food/add-food.component';
-import {MatTableModule} from '@angular/material/table';
-
+import { MatCardModule } from '@angular/material/card';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { EditionAlimentComponent } from './pages/edition-aliment/edition-aliment.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { JwtInterceptor } from './services/jwt.interceptor';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FoodComponent,
+    AlimentComponent,
     ConnexionComponent,
-    AddFoodComponent
+    Page404Component,
+    EditionAlimentComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatSlideToggleModule,
-    MatInputModule,
-    MatSelectModule,
-    MatCheckboxModule,
-    MatCardModule,
     MatButtonModule,
-    MatTableModule
+    MatCardModule,
+    HttpClientModule,
+    MatInputModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatIconModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

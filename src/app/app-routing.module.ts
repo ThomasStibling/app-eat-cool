@@ -1,15 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AlimentComponent } from './pages/aliment/aliment.component';
 import { ConnexionComponent } from './pages/connexion/connexion.component';
-import { FoodComponent } from './pages/food/food.component';
-import { AddFoodComponent } from './pages/add-food/add-food.component';
+import { Page404Component } from './pages/page404/page404.component';
+import { EditionAlimentComponent } from './pages/edition-aliment/edition-aliment.component';
+import { authGuard } from './services/auth.guard';
 
 const routes: Routes = [
-  { path: 'accueil', component: ConnexionComponent },
-  { path: 'connexion', component: ConnexionComponent},
-  { path: 'food', component: FoodComponent},
-  { path: 'add-food', component: AddFoodComponent},
+  { path: 'accueil', component: AlimentComponent },
+  { path: 'connexion', component: ConnexionComponent },
+  {
+    path: 'ajout-aliment',
+    component: EditionAlimentComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'modifier-article/:id',
+    component: EditionAlimentComponent,
+    canActivate: [authGuard],
+  },
   { path: '', redirectTo: 'accueil', pathMatch: 'full' },
+  { path: '**', component: Page404Component },
 ];
 
 @NgModule({
