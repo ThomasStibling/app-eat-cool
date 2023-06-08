@@ -20,7 +20,7 @@ export class AlimentComponent {
 
   raffraichir() {
     this.http
-      .get<Aliment[]>('http://localhost:3000/aliments')
+      .get<Aliment[]>('http://localhost:4000/aliments')
       .subscribe((listeAliment) => (this.listeAliment = listeAliment));
   }
 

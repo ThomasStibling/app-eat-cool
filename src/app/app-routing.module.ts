@@ -15,7 +15,7 @@ const routes: Routes = [
     canActivate: [authGuard],
   },
   {
-    path: 'modifier-article/:id',
+    path: 'modifier-aliment/:id',
     component: EditionAlimentComponent,
     canActivate: [authGuard],
   },

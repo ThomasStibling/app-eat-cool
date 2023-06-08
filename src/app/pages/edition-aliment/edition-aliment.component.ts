@@ -11,12 +11,14 @@ import { Aliment } from 'src/app/models/Aliment';
 })
 export class EditionAlimentComponent {
   formulaire: FormGroup = this.formBuilder.group({
-    title: ['', [Validators.required]],
-    body: ['', [Validators.required, Validators.minLength(5)]],
+    name:['', [Validators.required]],
+    calories:['', [Validators.required]],
+    lipids:['', [Validators.required]],
+    carbohydrate:['', [Validators.required]],
+    proteins:['', [Validators.required]],
   });
 
   alimentModifie?: Aliment;
-  fichierSelectionne: File | null = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -27,11 +29,12 @@ export class EditionAlimentComponent {
     this.route.params.subscribe((parametres) => {
       if (parametres['id'] !== undefined) {
         this.http
-          .get<Aliment>('http://localhost:3000/aliments/' + parametres['id'])
+          .get<Aliment>('http://localhost:4000/aliments/' + parametres['id'])
           .subscribe({
-            next: (article) => {
-              this.formulaire.patchValue(article);
-              this.alimentModifie = article;
+            next: (aliment) => {
+              console.log(aliment);
+              this.formulaire.patchValue(aliment);
+              this.alimentModifie = aliment;
             },
             error: (reponse) => alert(reponse.error),
           });
@@ -39,33 +42,29 @@ export class EditionAlimentComponent {
     });
   }
 
-  onAjoutArticle() {
+  onAjoutAliment() {
     if (this.formulaire.valid) {
       if (this.alimentModifie) {
         const formData: FormData = new FormData();
 
-        formData.append('article', JSON.stringify(this.formulaire.value));
-
+        formData.append('aliment', JSON.stringify(this.formulaire.value));
+        console.log(this.formulaire.value)
         this.http
           .put(
             'http://localhost:4000/aliments/' + this.alimentModifie.id,
             formData
           )
           .subscribe({
-            next: (resultat) => this.router.navigateByUrl('/accueil'),
+            next: (resultat) => this.router.navigateByUrl('/food'),
             error: (reponse) => alert(reponse.error),
           });
       } else {
         const formData: FormData = new FormData();
 
-        formData.append('article', JSON.stringify(this.formulaire.value));
+        formData.append('aliment', JSON.stringify(this.formulaire.value));
 
-        if (this.fichierSelectionne) {
-          formData.append('fichier', this.fichierSelectionne);
-        }
-
-        this.http.post('http://localhost:4000/aliment', formData).subscribe({
-          next: (resultat) => this.router.navigateByUrl('/accueil'),
+        this.http.post('http://localhost:4000/aliments', formData).subscribe({
+          next: (resultat) => this.router.navigateByUrl('/food'),
           error: (reponse) => alert(reponse.error),
         });
       }

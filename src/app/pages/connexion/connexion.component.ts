@@ -24,7 +24,7 @@ export class ConnexionComponent {
     if (this.formulaire.valid) {
       this.auth.login(this.formulaire.value).subscribe(success => {
         if(success) {
-          this.router.navigateByUrl('/accueil');
+          this.router.navigateByUrl('/aliment');
         } else {
           alert("Mauvais login / mot de passe")
         }
