@@ -45,26 +45,19 @@ export class EditionAlimentComponent {
   onAjoutAliment() {
     if (this.formulaire.valid) {
       if (this.alimentModifie) {
-        const formData: FormData = new FormData();
-
-        formData.append('aliment', JSON.stringify(this.formulaire.value));
-        console.log(this.formulaire.value)
         this.http
           .put(
-            'http://localhost:4000/aliments/' + this.alimentModifie.id,
-            formData
+            'http://localhost:4000/aliments/' + this.alimentModifie._id,
+            this.formulaire.value
           )
           .subscribe({
-            next: (resultat) => this.router.navigateByUrl('/food'),
+            next: (resultat) => this.router.navigateByUrl('/aliment'),
             error: (reponse) => alert(reponse.error),
           });
       } else {
-        const formData: FormData = new FormData();
 
-        formData.append('aliment', JSON.stringify(this.formulaire.value));
-
-        this.http.post('http://localhost:4000/aliments', formData).subscribe({
-          next: (resultat) => this.router.navigateByUrl('/food'),
+        this.http.post('http://localhost:4000/aliments', this.formulaire.value).subscribe({
+          next: (resultat) => this.router.navigateByUrl('/aliment'),
           error: (reponse) => alert(reponse.error),
         });
       }

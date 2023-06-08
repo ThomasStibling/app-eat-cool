@@ -20,17 +20,17 @@
         </mat-card-content>
         <mat-card-actions>
           <a
-            
+            *ngIf="jwt"
             mat-button
             color="primary"
-            [routerLink]="['/modifier-article', aliment.id]"
+            [routerLink]="['/modifier-aliment', aliment._id]"
             >Modifier</a
           >
           <button
-            
+            *ngIf="jwt"
             mat-button
             color="warn"
-            (click)="onSupprimerArticle(aliment.id)"
+            (click)="onSupprimerArticle(aliment._id)"
           >
             Supprimer
           </button>

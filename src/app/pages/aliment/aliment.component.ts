@@ -24,7 +24,7 @@ export class AlimentComponent {
       .subscribe((listeAliment) => (this.listeAliment = listeAliment));
   }
 
-  onSupprimerArticle(idAliment: String) {
+  onSupprimerArticle(idAliment: string) {
     this.http.delete('http://localhost:4000/aliments/' + idAliment).subscribe({
       next: (reponse) => this.raffraichir(),
       error: (reponse) => console.log(reponse),

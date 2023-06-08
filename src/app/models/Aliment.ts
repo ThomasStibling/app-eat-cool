@@ -1,8 +1,8 @@
 export interface Aliment {
-  id:String;
-  name:String,
-  calories:Number,
-  lipids:Number,
-  carbohydrate:Number,
-  proteins:Number
+  _id:string;
+  name:string,
+  calories:number,
+  lipids:number,
+  carbohydrate:number,
+  proteins:number
 }
