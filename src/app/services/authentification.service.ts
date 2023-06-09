@@ -33,6 +33,7 @@ export class AuthentificationService {
 
   logout() {
     localStorage.removeItem('jwt');
+    localStorage.removeItem('userId');
     this.$jwt.next(null);
   }
 

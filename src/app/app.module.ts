@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './services/jwt.interceptor';
 import { MatIconModule } from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
+import { StatsComponent } from './pages/stats/stats.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {MatSelectModule} from '@angular/material/select';
     Page404Component,
     EditionAlimentComponent,
     PlanningComponent,
+    StatsComponent,
   ],
   imports: [
     BrowserModule,

@@ -41,19 +41,18 @@ constructor(
     });
 
   })
+}
+
+onAddPlanning(){
   this.route.params.subscribe((parametres) => {
-    if (parametres['id'] !== undefined) {
-      this.http
-        .get<Planning>('http://localhost:4000/plannings/')
-        .subscribe({
-          next: (planning) => {
-            console.log(planning);
-            this.formulaire.patchValue(planning);
-          },
+    if (this.formulaire.valid) {
+        this.http.post('http://localhost:4000/plannings', this.formulaire.value).subscribe({
+          next: (resultat) => this.router.navigateByUrl('/aliment'),
           error: (reponse) => alert(reponse.error),
         });
-    }
-  });
+      }
+    });
+}
+}
 
-}
-}
+

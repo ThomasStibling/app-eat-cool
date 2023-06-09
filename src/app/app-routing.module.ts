@@ -7,6 +7,7 @@ import { EditionAlimentComponent } from './pages/edition-aliment/edition-aliment
 import { PlanningComponent } from './pages/planning/planning.component';
 
 import { authGuard } from './services/auth.guard';
+import { StatsComponent } from './pages/stats/stats.component';
 
 const routes: Routes = [
   { path: 'aliment', component: AlimentComponent },
@@ -24,6 +25,11 @@ const routes: Routes = [
   {
     path: 'planning',
     component: PlanningComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'stats',
+    component: StatsComponent,
     canActivate: [authGuard],
   },
   { path: '', redirectTo: 'aliment', pathMatch: 'full' },
