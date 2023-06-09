@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Aliment } from 'src/app/models/Aliment';
+import { Jwt } from 'src/app/models/Jwt';
+import { Planning } from 'src/app/models/Planning';
 import { AuthentificationService } from 'src/app/services/authentification.service';
 
 @Component({
@@ -15,7 +17,8 @@ export class PlanningComponent {
   formulaire: FormGroup = this.formBuilder.group({
     date: ['', [Validators.required]],
     typeOfMeal: ['', [Validators.required]],
-    aliment: ['', [Validators.required]]
+    aliment: ['', [Validators.required]],
+    user:[localStorage.getItem('userId'), [Validators.required]]
 });
 
 constructor(
@@ -41,15 +44,16 @@ constructor(
   this.route.params.subscribe((parametres) => {
     if (parametres['id'] !== undefined) {
       this.http
-        .get<Aliment>('http://localhost:4000/aliments/')
+        .get<Planning>('http://localhost:4000/plannings/')
         .subscribe({
-          next: (aliment) => {
-            console.log(aliment);
-            this.formulaire.patchValue(aliment);
+          next: (planning) => {
+            console.log(planning);
+            this.formulaire.patchValue(planning);
           },
           error: (reponse) => alert(reponse.error),
         });
     }
   });
+
 }
 }
