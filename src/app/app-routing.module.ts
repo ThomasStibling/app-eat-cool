@@ -4,6 +4,8 @@ import { AlimentComponent } from './pages/aliment/aliment.component';
 import { ConnexionComponent } from './pages/connexion/connexion.component';
 import { Page404Component } from './pages/page404/page404.component';
 import { EditionAlimentComponent } from './pages/edition-aliment/edition-aliment.component';
+import { PlanningComponent } from './pages/planning/planning.component';
+
 import { authGuard } from './services/auth.guard';
 
 const routes: Routes = [
@@ -17,6 +19,11 @@ const routes: Routes = [
   {
     path: 'modifier-aliment/:id',
     component: EditionAlimentComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'planning',
+    component: PlanningComponent,
     canActivate: [authGuard],
   },
   { path: '', redirectTo: 'aliment', pathMatch: 'full' },

@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AlimentComponent } from './pages/aliment/aliment.component';
+import { PlanningComponent } from './pages/planning/planning.component';
 import { ConnexionComponent } from './pages/connexion/connexion.component';
 import { Page404Component } from './pages/page404/page404.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,6 +25,7 @@ import { MatIconModule } from '@angular/material/icon';
     ConnexionComponent,
     Page404Component,
     EditionAlimentComponent,
+    PlanningComponent,
   ],
   imports: [
     BrowserModule,

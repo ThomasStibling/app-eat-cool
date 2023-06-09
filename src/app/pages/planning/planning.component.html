@@ -1,0 +1,31 @@
+<form (ngSubmit)="onAddMeal()" [formGroup]="formulaire">
+
+    <mat-form-field>
+        <mat-label>Choose a date</mat-label>
+        <input matInput formControlName="date">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix></mat-datepicker-toggle>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Meal</mat-label>
+        <select matNativeControl required>
+            <option value="morning">morning</option>
+            <option value="lunch">lunch</option>
+            <option value="break">break</option>
+            <option value="dinner">dinner</option>
+        </select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Food</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{food.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+    <button mat-raised-button type="submit" color="primary">Se connecter</button>
+</form>

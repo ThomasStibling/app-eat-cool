@@ -52,7 +52,7 @@ export class EditionAlimentComponent {
           )
           .subscribe({
             next: (resultat) => this.router.navigateByUrl('/aliment'),
-            error: (reponse) => alert(reponse.error),
+            error: (reponse) => console.log(reponse.error),
           });
       } else {
 
