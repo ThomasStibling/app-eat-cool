@@ -18,6 +18,7 @@ export class AuthentificationService {
       this.http.post('http://127.0.0.1:4000/users/login', utilisateur).subscribe({
         next: (reponse: any) => {
           localStorage.setItem('jwt', reponse.token);
+          localStorage.setItem('userId', reponse.userId);
           this.readJwtLocalStorage();
           resolve.next(true);
           resolve.complete();
